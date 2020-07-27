@@ -1,10 +1,12 @@
 #pragma once
 
-#ifdef AUDIO_ENABLE
-#define STARTUP_SONG SONG(PLANCK_SOUND)
-#endif
+// #ifdef AUDIO_ENABLE
+// #define STARTUP_SONG SONG(PLANCK_SOUND)
+// #endif
 
 #define MIDI_BASIC
+#define MIDI_ADVANCED
+#define MIDI_TONE_KEYCODE_OCTAVES 3
 
 #define ENCODER_RESOLUTION 4
 

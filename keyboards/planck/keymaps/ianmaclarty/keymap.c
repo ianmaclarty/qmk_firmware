@@ -29,8 +29,9 @@ enum planck_layers {
   _LOWER,
   _RAISE,
   _ADJUST,
-  _LAYER4,
-  _LAYER5,
+  _FUNCTION,
+  _NUMBERS,
+  _MIDI,
 };
 
 #define LOWER MO(_LOWER)
@@ -63,24 +64,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_ADJUST] = LAYOUT_planck_grid(
-        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,
+        TG(_MIDI),  TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,
         TRNS,       TRNS,       AU_ON,      AU_OFF,     AU_TOG,     TRNS,       TRNS,       RGB_TOG,    RGB_VAI,    RGB_VAD,    TRNS,       RESET,
         TRNS,       TRNS,       MU_ON,      MU_OFF,     MU_TOG,     TRNS,       TRNS,       RGB_MOD,    RGB_HUI,    RGB_HUD,    TRNS,       TRNS,
         TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       TRNS,       TRNS,       TRNS,       TRNS
     ),
 
-    [_LAYER4] = LAYOUT_planck_grid(
+    [_FUNCTION] = LAYOUT_planck_grid(
         KC_PSCREEN, KC_PGUP,    KC_HOME,    KC_UP,      KC_END,     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_KP_7,    KC_KP_8,    KC_KP_9,
         TRNS,       KC_PGDOWN,  KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_KP_4,    KC_KP_5,    KC_KP_6,
         TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_KP_1,    KC_KP_2,    KC_KP_3,
         TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       TRNS,       KC_KP_0,    KC_KP_DOT,  KC_NUMLOCK
     ),
 
-    [_LAYER5] = LAYOUT_planck_grid(
+    [_NUMBERS] = LAYOUT_planck_grid(
         TRNS,       KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       TRNS,
         TRNS,       KC_4,       KC_5,       KC_6,       TRNS,       TRNS,       TRNS,       KC_4,       KC_5,       KC_6,       TRNS,       TRNS,
         TRNS,       KC_7,       KC_8,       KC_9,       KC_0,       TRNS,       TRNS,       KC_1,       KC_2,       KC_3,       TRNS,       TRNS,
         TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      KC_0,       KC_DOT,     VOLDOWN,    VOLMUTE,    VOLUP
+    ),
+
+    [_MIDI] = LAYOUT_planck_grid(
+        MI_D,       MI_F,       MI_Gs,      MI_B,       MI_D_1,     MI_F_1,     MI_Gs_1,    MI_B_1,     MI_D_2,     MI_F_2,     MI_Gs_2,    MI_B_2,       
+        MI_Cs,      MI_E,       MI_G,       MI_As,      MI_Cs_1,    MI_E_1,     MI_G_1,     MI_As_1,    MI_Cs_2,    MI_E_2,     MI_G_2,     MI_As_2,      
+        MI_C,       MI_Ds,      MI_Fs,      MI_A,       MI_C_1,     MI_Ds_1,    MI_Fs_1,    MI_A_1,     MI_C_2,     MI_Ds_2,    MI_Fs_2,    MI_A_2,       
+        TG(_MIDI),  TRNS,       TRNS,       TRNS,       MI_OCTD,    MI_SUS,     KC_NO,      MI_OCTU,    TRNS,       MI_TRNSD,   MI_TRNS_0,  MI_TRNSU
     ),
 };
 
@@ -114,22 +122,28 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  BLACK,      BLACK,      BLACK,      BLACK,      BLACK },
 
     [_ADJUST] = { 
-        BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK, 
+        BLUE,       BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK, 
         BLACK,      BLACK,      YELLOW,     YELLOW,     YELLOW,     BLACK,      BLACK,      YELLOW,     YELLOW,     YELLOW,     BLACK,      RED, 
         BLACK,      BLACK,      YELLOW,     YELLOW,     YELLOW,     BLACK,      BLACK,      YELLOW,     YELLOW,     YELLOW,     BLACK,      BLACK, 
         BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  BLACK,      BLACK,      BLACK,      BLACK,      BLACK },
 
-    [_LAYER4] = { 
+    [_FUNCTION] = { 
         BLUE,       RED,        RED,        WHITE,      RED,        BLUE,       BLUE,       BLUE,       BLUE,       RED,        RED,        RED, 
         BLACK,      RED,        WHITE,      WHITE,      WHITE,      BLUE,       BLUE,       BLUE,       BLUE,       RED,        RED,        RED, 
         BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLUE,       BLUE,       BLUE,       BLUE,       RED,        RED,        RED, 
         BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  BLACK,      BLACK,      RED,        RED,        WHITE },
 
-    [_LAYER5] = {
+    [_NUMBERS] = {
         BLACK,      MAGENTA,    MAGENTA,    MAGENTA,    MAGENTA,    MAGENTA,    MAGENTA,    MAGENTA,    MAGENTA,    MAGENTA,    MAGENTA,    BLACK, 
         BLACK,      MAGENTA,    MAGENTA,    MAGENTA,    BLACK,      BLACK,      BLACK,      MAGENTA,    MAGENTA,    MAGENTA,    BLACK,      BLACK, 
         BLACK,      MAGENTA,    MAGENTA,    MAGENTA,    MAGENTA,    BLACK,      BLACK,      MAGENTA,    MAGENTA,    MAGENTA,    BLACK,      BLACK, 
         BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  MAGENTA,    MAGENTA,    WHITE,      WHITE,      WHITE },
+
+    [_MIDI] = {
+        BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      
+        WHITE,      BLACK,      BLACK,      WHITE,      WHITE,      BLACK,      BLACK,      WHITE,      WHITE,      BLACK,      BLACK,      WHITE,      
+        BLACK,      WHITE,      WHITE,      BLACK,      BLACK,      WHITE,      WHITE,      BLACK,      BLACK,      WHITE,      WHITE,      BLACK,      
+        RED,        BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  BLACK,      BLACK,      BLACK,      BLACK,      BLACK },
 
 };
 
@@ -161,6 +175,9 @@ void rgb_matrix_indicators_user(void) {
       break;
     case 5:
       set_layer_color(5);
+      break;
+    case 6:
+      set_layer_color(6);
       break;
    default:
     if (rgb_matrix_get_flags() == LED_FLAG_NONE)
