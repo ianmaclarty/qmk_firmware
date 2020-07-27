@@ -22,6 +22,18 @@
 
 enum planck_keycodes {
   RGB_SLD = EZ_SAFE_RANGE,
+  ROOT_C,
+  ROOT_Cs,
+  ROOT_D,
+  ROOT_Ds,
+  ROOT_E,
+  ROOT_F,
+  ROOT_Fs,
+  ROOT_G,
+  ROOT_Gs,
+  ROOT_A,
+  ROOT_As,
+  ROOT_B,
 };
 
 enum planck_layers {
@@ -32,6 +44,7 @@ enum planck_layers {
   _FUNCTION,
   _NUMBERS,
   _MIDI,
+  _ROOT,
 };
 
 #define LOWER MO(_LOWER)
@@ -88,8 +101,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MI_D,       MI_F,       MI_Gs,      MI_B,       MI_D_1,     MI_F_1,     MI_Gs_1,    MI_B_1,     MI_D_2,     MI_F_2,     MI_Gs_2,    MI_B_2,       
         MI_Cs,      MI_E,       MI_G,       MI_As,      MI_Cs_1,    MI_E_1,     MI_G_1,     MI_As_1,    MI_Cs_2,    MI_E_2,     MI_G_2,     MI_As_2,      
         MI_C,       MI_Ds,      MI_Fs,      MI_A,       MI_C_1,     MI_Ds_1,    MI_Fs_1,    MI_A_1,     MI_C_2,     MI_Ds_2,    MI_Fs_2,    MI_A_2,       
-        TG(_MIDI),  TRNS,       TRNS,       TRNS,       MI_OCTD,    MI_SUS,     KC_NO,      MI_OCTU,    TRNS,       MI_TRNSD,   MI_TRNS_0,  MI_TRNSU
+        TG(_MIDI),  MO(_ROOT),  MI_BENDD,   MI_BENDU,   MI_OCTD,    MI_MOD,     KC_NO,      MI_OCTU,    MI_SUS,     MI_MODSD,    MI_ALLOFF, MI_MODSU
     ),
+
+    [_ROOT] = LAYOUT_planck_grid(
+        ROOT_D,     ROOT_F,     ROOT_Gs,    ROOT_B,     ROOT_D,     ROOT_F,     ROOT_Gs,    ROOT_B,     ROOT_D,     ROOT_F,     ROOT_Gs,    ROOT_B,       
+        ROOT_Cs,    ROOT_E,     ROOT_G,     ROOT_As,    ROOT_Cs,    ROOT_E,     ROOT_G,     ROOT_As,    ROOT_Cs,    ROOT_E,     ROOT_G,     ROOT_As,      
+        ROOT_C,     ROOT_Ds,    ROOT_Fs,    ROOT_A,     ROOT_C,     ROOT_Ds,    ROOT_Fs,    ROOT_A,     ROOT_C,     ROOT_Ds,    ROOT_Fs,    ROOT_A,       
+        TRNS,       TRNS,       TRNS,       TRNS,       MI_CHD,     TRNS,       KC_NO,      MI_CHU,       TRNS,       MI_TRNSD,   MI_TRNS_0,  MI_TRNSU
+    ), 
 };
 
 extern bool g_suspend_state;
@@ -100,6 +120,8 @@ void keyboard_post_init_user(void) {
 }
 
 #define BLACK {0, 0, 0}
+#define DARKGREY {50, 50, 50}
+#define LIGHTGREY {150, 150, 150}
 #define GREEN {0, 255, 0}
 #define RED {255, 0, 0}
 #define BLUE {0, 0, 255}
@@ -107,6 +129,9 @@ void keyboard_post_init_user(void) {
 #define YELLOW {255,255,0}
 #define MAGENTA {255, 0, 255}
 #define ORANGE {255, 128, 0}
+#define CYAN {0, 255, 255}
+#define PINK {255, 100, 100}
+#define BROWN {70, 50, 0}
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [_LOWER] = { 
@@ -144,7 +169,6 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         WHITE,      BLACK,      BLACK,      WHITE,      WHITE,      BLACK,      BLACK,      WHITE,      WHITE,      BLACK,      BLACK,      WHITE,      
         BLACK,      WHITE,      WHITE,      BLACK,      BLACK,      WHITE,      WHITE,      BLACK,      BLACK,      WHITE,      WHITE,      BLACK,      
         RED,        BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  BLACK,      BLACK,      BLACK,      BLACK,      BLACK },
-
 };
 
 void set_layer_color(int layer) {
@@ -158,26 +182,60 @@ void set_layer_color(int layer) {
   }
 }
 
+const uint8_t PROGMEM note_colors[][3] = {
+    WHITE,
+    BLACK,
+    GREEN,
+    BLUE,
+    MAGENTA,
+    GREEN,
+    BLACK,
+    YELLOW,
+    BLUE,
+    MAGENTA,
+    BLUE,
+    MAGENTA,
+};
+
+static int midi_root = 0;
+
+void set_midi_layer_color(void) {
+    for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+        uint8_t r = 0;
+        uint8_t g = 0;
+        uint8_t b = 0;
+        if (i < 36) {
+            int note = (i % 4) * 3 + (2 - (i / 12));
+            note -= midi_root;
+            if (note < 0) {
+                note += 12;
+            }
+            r = pgm_read_byte(&note_colors[note][0]);
+            g = pgm_read_byte(&note_colors[note][1]);
+            b = pgm_read_byte(&note_colors[note][2]);
+        } else {
+            r = pgm_read_byte(&ledmap[_MIDI][i][0]);
+            g = pgm_read_byte(&ledmap[_MIDI][i][1]);
+            b = pgm_read_byte(&ledmap[_MIDI][i][2]);
+        }
+        rgb_matrix_set_color(i, r, g, b);
+    }
+}
+
 void rgb_matrix_indicators_user(void) {
   if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
-  switch (biton32(layer_state)) {
-    case 1:
-      set_layer_color(1);
+  int layer = biton32(layer_state);
+  switch (layer) {
+    case _LOWER:
+    case _RAISE:
+    case _ADJUST:
+    case _FUNCTION:
+    case _NUMBERS:
+      set_layer_color(layer);
       break;
-    case 2:
-      set_layer_color(2);
-      break;
-    case 3:
-      set_layer_color(3);
-      break;
-    case 4:
-      set_layer_color(4);
-      break;
-    case 5:
-      set_layer_color(5);
-      break;
-    case 6:
-      set_layer_color(6);
+    case _MIDI:
+    case _ROOT:
+      set_midi_layer_color();
       break;
    default:
     if (rgb_matrix_get_flags() == LED_FLAG_NONE)
@@ -187,14 +245,30 @@ void rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-  }
-  return true;
+    switch (keycode) {
+        case RGB_SLD:
+            if (record->event.pressed) {
+                rgblight_mode(1);
+            }
+            return false;
+        case ROOT_C:
+        case ROOT_Cs:
+        case ROOT_D:
+        case ROOT_Ds:
+        case ROOT_E:
+        case ROOT_F:
+        case ROOT_Fs:
+        case ROOT_G:
+        case ROOT_Gs:
+        case ROOT_A:
+        case ROOT_As:
+        case ROOT_B:
+            if (record->event.pressed) {
+                midi_root = keycode - ROOT_C;
+            }
+            return false;
+        }
+    return true;
 }
 
 #ifdef AUDIO_ENABLE
