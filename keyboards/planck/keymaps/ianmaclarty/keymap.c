@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_RAISE] = LAYOUT_planck_grid(
         KC_DELETE,  RSFT(KC_Q), RSFT(KC_W), RSFT(KC_E), RSFT(KC_R), RSFT(KC_T), LSFT(KC_Y), LSFT(KC_U), LSFT(KC_I), LSFT(KC_O), LSFT(KC_P), TRNS,
-        TRNS,       RSFT(KC_A), RSFT(KC_S), RSFT(KC_D), RSFT(KC_F), RSFT(KC_G), LSFT(KC_H), LSFT(KC_J), LSFT(KC_K), LSFT(KC_L), KC_COLN,    KC_QUOTE,
+        RSFT(KC_TAB),RSFT(KC_A),RSFT(KC_S), RSFT(KC_D), RSFT(KC_F), RSFT(KC_G), LSFT(KC_H), LSFT(KC_J), LSFT(KC_K), LSFT(KC_L), KC_COLN,    KC_QUOTE,
         TRNS,       RSFT(KC_Z), RSFT(KC_X), RSFT(KC_C), RSFT(KC_V), RSFT(KC_B), LSFT(KC_N), LSFT(KC_M), KC_LABK,    KC_RABK,    KC_DQUO,    TRNS,
         TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       TRNS,       TRNS,       TRNS,       TRNS
     ),
