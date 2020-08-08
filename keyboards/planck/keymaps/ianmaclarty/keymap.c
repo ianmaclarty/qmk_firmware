@@ -187,6 +187,28 @@ void set_fn_layer_color(int layer) {
     }
 }
 
+#define LAZY_LALT 1
+#define LAZY_LCTRL 2
+#define LAZY_LSHIFT 4
+#define LAZY_LGUI 8
+
+static uint8_t lazy_mods_mask = 0;
+
+void set_lazy_mod_colors(void) {
+    if (lazy_mods_mask & LAZY_LSHIFT) {
+        rgb_matrix_set_color(24, 255, 255, 255);
+    }
+    if (lazy_mods_mask & LAZY_LCTRL) {
+        rgb_matrix_set_color(36, 255, 255, 255);
+    }
+    if (lazy_mods_mask & LAZY_LGUI) {
+        rgb_matrix_set_color(37, 255, 255, 255);
+    }
+    if (lazy_mods_mask & LAZY_LALT) {
+        rgb_matrix_set_color(38, 255, 255, 255);
+    }
+}
+
 const uint8_t PROGMEM note_colors[][3] = {
     WHITE,
     BLACK,
@@ -250,6 +272,7 @@ void rgb_matrix_indicators_user(void) {
       rgb_matrix_set_color_all(0, 0, 0);
     break;
   }
+  set_lazy_mod_colors();
 }
 
 static uint16_t last_pressed_key = 0;
@@ -262,6 +285,47 @@ static void handle_layer_toggle(uint16_t keycode, keyrecord_t *record, int layer
     } else {
         if (tap_count <= 1) {
             layer_off(layer);
+        }
+    }
+}
+
+static void handle_lazy_mods(uint16_t keycode, keyrecord_t *record, bool *unhandled) {
+    uint8_t lazy = 0;
+    if (lazy_mods_mask || IS_LAYER_ON(_FUNCTION)) {
+        switch (keycode) {
+            case KC_LSHIFT:
+                lazy = LAZY_LSHIFT;
+                break;
+            case KC_LALT:
+                lazy = LAZY_LALT;
+                break;
+            case KC_LCTRL:
+                lazy = LAZY_LCTRL;
+                break;
+            case KC_LGUI:
+                lazy = LAZY_LGUI;
+                break;
+        }
+    }
+    if (lazy) {
+        if (record->event.pressed) {
+            if (lazy_mods_mask & lazy) {
+                lazy_mods_mask = lazy_mods_mask & ~lazy;
+                *unhandled = false; // don't send press that turns off the key
+            } else {
+                lazy_mods_mask = lazy_mods_mask | lazy;
+            }
+        } else {
+            if (lazy_mods_mask & lazy) {
+                *unhandled = false; // don't send release for pressed lazy keys
+            }
+        }
+    } else if (lazy_mods_mask) {
+        if (!record->event.pressed) {
+            unregister_code(keycode);
+            clear_mods();
+            lazy_mods_mask = 0;
+            *unhandled = false;
         }
     }
 }
@@ -319,6 +383,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         last_pressed_key = keycode;
         tap_timer = timer_read();
+    }
+    if (unhandled) {
+        handle_lazy_mods(keycode, record, &unhandled);
     }
     return unhandled;
 }
