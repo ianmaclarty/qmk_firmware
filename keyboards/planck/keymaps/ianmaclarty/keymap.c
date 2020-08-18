@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRAVE,   KC_LCBR,    KC_1,       KC_2,       KC_3,       KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_EQUAL,   KC_RCBR,    TRNS,
         KC_TILD,    KC_LPRN,    KC_4,       KC_5,       KC_6,       KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_MINUS,   KC_RPRN,    KC_DQUO,
         TRNS,       KC_LBRACKET,KC_7,       KC_8,       KC_9,       KC_QUES,    KC_BSLASH,  KC_PIPE,    KC_SLASH,   KC_PLUS,    KC_RBRACKET,KC_PGUP,
-        TRNS,       TRNS,       TRNS,       KC_0,       TRNS,       TRNS,       KC_NO,      KC_DELETE,  TRNS,       TRNS,       TRNS,       KC_PGDOWN
+        TRNS,       TRNS,       TRNS,       KC_0,       TRNS,       KC_0,       KC_NO,      KC_DELETE,  TRNS,       TRNS,       TRNS,       KC_PGDOWN
     ),
 
     [_MIDI] = LAYOUT_planck_grid(
@@ -152,7 +152,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         GREEN,      PINK,       AQUA,       AQUA,       AQUA,       GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      PINK,       BLACK, 
         GREEN,      PINK,       AQUA,       AQUA,       AQUA,       GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      PINK,       GREEN, 
         BLACK,      PINK,       AQUA,       AQUA,       AQUA,       GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      PINK,       BLUE, 
-        BLACK,      BLACK,      BLACK,      AQUA,       BLACK,      BLACK,                  RED,        BLACK,      BLACK,      BLACK,      BLUE },
+        BLACK,      BLACK,      BLACK,      AQUA,       BLACK,      AQUA,                   RED,        BLACK,      BLACK,      BLACK,      BLUE },
 
     [_MIDI] = {
         BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      
