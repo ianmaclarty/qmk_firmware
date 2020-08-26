@@ -54,9 +54,9 @@ enum planck_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_planck_grid(
         KC_ESCAPE,  KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_BSPACE,
-        KC_TAB,     KC_A,       KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,       KC_SCOLON,  KC_ENTER,
-        KC_LSHIFT,  KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMMA,   KC_DOT,     KC_UP,      KC_END,
-        KC_LCTRL,   KC_LGUI,    KC_LALT,    LT_FN,      LT_NUM,     KC_SPACE,   KC_NO,      LT_CAPS,    KC_HOME,    KC_LEFT,    KC_DOWN,    KC_RIGHT
+        KC_TAB,     KC_A,       KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,       KC_SCOLON,  KC_QUOTE,
+        KC_LSHIFT,  KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMMA,   KC_DOT,     KC_SLASH,   KC_ENTER,
+        KC_LCTRL,   KC_LGUI,    KC_LALT,    LT_FN,      LT_NUM,     KC_SPACE,   KC_NO,      KC_RSHIFT,  KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
     ),
 
     [_LOWER] = LAYOUT_planck_grid(
@@ -68,8 +68,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_CAPS] = LAYOUT_planck_grid(
         KC_DELETE,  RSFT(KC_Q), RSFT(KC_W), RSFT(KC_E), RSFT(KC_R), RSFT(KC_T), LSFT(KC_Y), LSFT(KC_U), LSFT(KC_I),     LSFT(KC_O),     LSFT(KC_P),     TRNS,
-        RSFT(KC_TAB),RSFT(KC_A),RSFT(KC_S), RSFT(KC_D), RSFT(KC_F), RSFT(KC_G), LSFT(KC_H), LSFT(KC_J), LSFT(KC_K),     LSFT(KC_L),     KC_COLN,        KC_QUOTE,
-        TRNS,       RSFT(KC_Z), RSFT(KC_X), RSFT(KC_C), RSFT(KC_V), RSFT(KC_B), LSFT(KC_N), LSFT(KC_M), KC_LABK,        KC_RABK,        LSFT(KC_UP),    LSFT(KC_END),
+        RSFT(KC_TAB),RSFT(KC_A),RSFT(KC_S), RSFT(KC_D), RSFT(KC_F), RSFT(KC_G), LSFT(KC_H), LSFT(KC_J), LSFT(KC_K),     LSFT(KC_L),     KC_COLN,        KC_DQUO,
+        TRNS,       RSFT(KC_Z), RSFT(KC_X), RSFT(KC_C), RSFT(KC_V), RSFT(KC_B), LSFT(KC_N), LSFT(KC_M), KC_LABK,        KC_RABK,        KC_QUES,        TRNS,
         TRNS,       TRNS,       TRNS,       TRNS,       KC_BSPACE,  KC_UNDS,    KC_NO,      TRNS,       LSFT(KC_HOME),  LSFT(KC_LEFT),  LSFT(KC_DOWN),  LSFT(KC_RIGHT)
     ),
 
@@ -81,17 +81,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FUNCTION] = LAYOUT_planck_grid(
-        TRNS,       KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_KP_7,    KC_KP_8,    KC_KP_9,    KC_KP_SLASH,    KC_NUMLOCK, KC_PSCREEN, TRNS,
-        TG(_RESET), KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_KP_4,    KC_KP_5,    KC_KP_6,    KC_KP_ASTERISK, KC_KP_ENTER,RGB_TOG,    TRNS,
+        TG(_RESET), KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_KP_7,    KC_KP_8,    KC_KP_9,    KC_KP_SLASH,    KC_NUMLOCK, KC_PSCREEN, TRNS,
+        TRNS,       KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_KP_4,    KC_KP_5,    KC_KP_6,    KC_KP_ASTERISK, KC_KP_ENTER,RGB_TOG,    TRNS,
         TRNS,       KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_KP_1,    KC_KP_2,    KC_KP_3,    KC_KP_MINUS,    TRNS,       RGB_MOD,    TG(_MIDI),
         TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_KP_0,    KC_NO,      KC_KP_DOT,  KC_KP_PLUS,     VOLDOWN,    VOLMUTE,    VOLUP
     ),
 
     [_NUMBERS] = LAYOUT_planck_grid(
-        KC_GRAVE,   KC_LCBR,    KC_1,       KC_2,       KC_3,       KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_EQUAL,   KC_RCBR,    TRNS,
-        KC_TILD,    KC_LPRN,    KC_4,       KC_5,       KC_6,       KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_MINUS,   KC_RPRN,    KC_DQUO,
-        TRNS,       KC_LBRACKET,KC_7,       KC_8,       KC_9,       KC_QUES,    KC_BSLASH,  KC_PIPE,    KC_SLASH,   KC_PLUS,    KC_RBRACKET,KC_PGUP,
-        TRNS,       TRNS,       TRNS,       KC_0,       TRNS,       KC_0,       KC_NO,      KC_DELETE,  TRNS,       TRNS,       TRNS,       KC_PGDOWN
+        KC_DELETE,  KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       TRNS,
+        KC_TILD,    KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_MINUS,   KC_EQUAL,   KC_GRAVE,
+        TRNS,       KC_LCBR,    KC_RCBR,    KC_LBRACKET,KC_RBRACKET,KC_BSLASH,  KC_PIPE,    KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,    TRNS,
+        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       KC_HOME,    KC_PGDOWN,  KC_PGUP,    KC_END
     ),
 
     [_MIDI] = LAYOUT_planck_grid(
@@ -143,16 +143,16 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  BLACK,      BLACK,      BLACK,      BLACK,      BLACK },
 
     [_FUNCTION] = { 
-        BLACK,      PINK,       PINK,       PINK,       PINK,       BLUE,       BLUE,       BLUE,       BLUE,       AQUA,       GREEN,      BLACK, 
-        RED,        PINK,       PINK,       PINK,       PINK,       BLUE,       BLUE,       BLUE,       BLUE,       BLUE,       YELLOW,     BLACK, 
+        RED,        PINK,       PINK,       PINK,       PINK,       BLUE,       BLUE,       BLUE,       BLUE,       AQUA,       GREEN,      BLACK, 
+        BLACK,      PINK,       PINK,       PINK,       PINK,       BLUE,       BLUE,       BLUE,       BLUE,       BLUE,       YELLOW,     BLACK, 
         BLACK,      PINK,       PINK,       PINK,       PINK,       BLUE,       BLUE,       BLUE,       BLUE,       BLACK,      YELLOW,     ORANGE, 
         BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLUE,                   BLUE,       BLUE,       WHITE,      WHITE,      WHITE },
 
     [_NUMBERS] = {
-        GREEN,      PINK,       AQUA,       AQUA,       AQUA,       GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      PINK,       BLACK, 
-        GREEN,      PINK,       AQUA,       AQUA,       AQUA,       GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      PINK,       GREEN, 
-        BLACK,      PINK,       AQUA,       AQUA,       AQUA,       GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      PINK,       BLUE, 
-        BLACK,      BLACK,      BLACK,      AQUA,       BLACK,      AQUA,                   RED,        BLACK,      BLACK,      BLACK,      BLUE },
+        ORANGE,     AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       BLACK, 
+        GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      YELLOW,     YELLOW,     GREEN, 
+        BLACK,      PINK,       PINK,       PINK,       PINK,       GREEN,      GREEN,      PINK,       PINK,       YELLOW,     YELLOW,     BLACK, 
+        BLACK,      BLACK,      BLACK,      AQUA,       BLACK,      BLACK,                  BLACK,      BLUE,       BLUE,       BLUE,       BLUE },
 
     [_MIDI] = {
         BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      
