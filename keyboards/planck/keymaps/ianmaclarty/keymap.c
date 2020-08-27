@@ -55,8 +55,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_planck_grid(
         KC_ESCAPE,  KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_BSPACE,
         KC_TAB,     KC_A,       KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,       KC_SCOLON,  KC_QUOTE,
-        KC_LSHIFT,  KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMMA,   KC_DOT,     KC_SLASH,   KC_ENTER,
-        KC_LCTRL,   KC_LGUI,    KC_LALT,    LT_FN,      LT_NUM,     KC_SPACE,   KC_NO,      KC_RSHIFT,  KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
+        KC_LSHIFT,  KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMMA,   KC_DOT,     KC_UP,      KC_ENTER,
+        KC_LCTRL,   KC_LGUI,    KC_LALT,    LT_FN,      LT_NUM,     KC_SPACE,   KC_NO,      KC_RSHIFT,  KC_SLASH,   KC_LEFT,    KC_DOWN,    KC_RIGHT
     ),
 
     [_LOWER] = LAYOUT_planck_grid(
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DELETE,  KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       TRNS,
         KC_TILD,    KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_MINUS,   KC_EQUAL,   KC_GRAVE,
         TRNS,       KC_LCBR,    KC_RCBR,    KC_LBRACKET,KC_RBRACKET,KC_BSLASH,  KC_PIPE,    KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,    TRNS,
-        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       KC_HOME,    KC_PGDOWN,  KC_PGUP,    KC_END
+        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      KC_QUES,    KC_HOME,    KC_PGDOWN,  KC_PGUP,    KC_END
     ),
 
     [_MIDI] = LAYOUT_planck_grid(
@@ -152,7 +152,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         ORANGE,     AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       BLACK, 
         GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      YELLOW,     YELLOW,     GREEN, 
         BLACK,      PINK,       PINK,       PINK,       PINK,       GREEN,      GREEN,      PINK,       PINK,       YELLOW,     YELLOW,     BLACK, 
-        BLACK,      BLACK,      BLACK,      AQUA,       BLACK,      BLACK,                  BLACK,      BLUE,       BLUE,       BLUE,       BLUE },
+        BLACK,      BLACK,      BLACK,      AQUA,       BLACK,      BLACK,                  GREEN,      BLUE,       BLUE,       BLUE,       BLUE },
 
     [_MIDI] = {
         BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      
