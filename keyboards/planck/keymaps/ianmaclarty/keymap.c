@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESCAPE,  KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_BSPACE,
         KC_TAB,     KC_A,       KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,       KC_SCOLON,  KC_QUOTE,
         KC_LSHIFT,  KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMMA,   KC_DOT,     KC_UP,      KC_ENTER,
-        KC_LCTRL,   KC_LGUI,    KC_LALT,    LT_FN,      LT_NUM,     KC_SPACE,   KC_NO,      KC_RSHIFT,  KC_SLASH,   KC_LEFT,    KC_DOWN,    KC_RIGHT
+        KC_LCTRL,   KC_LGUI,    KC_LALT,    LT_FN,      LT_NUM,     KC_SPACE,   KC_NO,      LT_CAPS,    KC_NO,      KC_LEFT,    KC_DOWN,    KC_RIGHT
     ),
 
     [_LOWER] = LAYOUT_planck_grid(
@@ -67,10 +67,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_CAPS] = LAYOUT_planck_grid(
-        KC_DELETE,  RSFT(KC_Q), RSFT(KC_W), RSFT(KC_E), RSFT(KC_R), RSFT(KC_T), LSFT(KC_Y), LSFT(KC_U), LSFT(KC_I),     LSFT(KC_O),     LSFT(KC_P),     TRNS,
-        RSFT(KC_TAB),RSFT(KC_A),RSFT(KC_S), RSFT(KC_D), RSFT(KC_F), RSFT(KC_G), LSFT(KC_H), LSFT(KC_J), LSFT(KC_K),     LSFT(KC_L),     KC_COLN,        KC_DQUO,
-        TRNS,       RSFT(KC_Z), RSFT(KC_X), RSFT(KC_C), RSFT(KC_V), RSFT(KC_B), LSFT(KC_N), LSFT(KC_M), KC_LABK,        KC_RABK,        KC_QUES,        TRNS,
-        TRNS,       TRNS,       TRNS,       TRNS,       KC_BSPACE,  KC_UNDS,    KC_NO,      TRNS,       LSFT(KC_HOME),  LSFT(KC_LEFT),  LSFT(KC_DOWN),  LSFT(KC_RIGHT)
+        TRNS,       RSFT(KC_Q), RSFT(KC_W), RSFT(KC_E), RSFT(KC_R), RSFT(KC_T), LSFT(KC_Y), LSFT(KC_U), LSFT(KC_I),     LSFT(KC_O),     LSFT(KC_P),     TRNS,
+        TRNS,       RSFT(KC_A),RSFT(KC_S), RSFT(KC_D), RSFT(KC_F), RSFT(KC_G), LSFT(KC_H), LSFT(KC_J),  LSFT(KC_K),     LSFT(KC_L),     KC_COLN,        KC_DQUO,
+        TRNS,       RSFT(KC_Z), RSFT(KC_X), RSFT(KC_C), RSFT(KC_V), RSFT(KC_B), LSFT(KC_N), LSFT(KC_M), KC_LABK,        KC_RABK,        KC_QUES,        KC_SLASH,
+        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       TRNS,           TRNS,           TRNS,           TRNS
     ),
 
     [_ADJUST] = LAYOUT_planck_grid(
@@ -90,8 +90,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NUMBERS] = LAYOUT_planck_grid(
         KC_DELETE,  KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       TRNS,
         KC_TILD,    KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_MINUS,   KC_EQUAL,   KC_GRAVE,
-        TRNS,       KC_LCBR,    KC_RCBR,    KC_LBRACKET,KC_RBRACKET,KC_BSLASH,  KC_PIPE,    KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,    TRNS,
-        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      KC_QUES,    KC_HOME,    KC_PGDOWN,  KC_PGUP,    KC_END
+        TRNS,       KC_LCBR,    KC_RCBR,    KC_LBRACKET,KC_RBRACKET,KC_BSLASH,  KC_PIPE,    KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,    KC_NO,
+        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       KC_HOME,    KC_PGDOWN,  KC_PGUP,    KC_END
     ),
 
     [_MIDI] = LAYOUT_planck_grid(
@@ -131,10 +131,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  BLACK,      BLACK,      BLACK,      BLACK,      BLACK },
 
     [_CAPS] = {
-        RED,        ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     BLACK, 
+        BLACK,      ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     BLACK, 
         BLACK,      ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE, 
-        BLACK,      ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     YELLOW,     YELLOW, 
-        BLACK,      BLACK,      BLACK,      BLACK,      RED,        ORANGE,                 BLACK,      YELLOW,     YELLOW,     YELLOW,     YELLOW },
+        BLACK,      ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE,     ORANGE, 
+        BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  BLACK,      BLACK,      BLACK,      BLACK,      BLACK },
 
     [_ADJUST] = { 
         BLUE,       BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK, 
@@ -152,7 +152,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         ORANGE,     AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       AQUA,       BLACK, 
         GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      GREEN,      YELLOW,     YELLOW,     GREEN, 
         BLACK,      PINK,       PINK,       PINK,       PINK,       GREEN,      GREEN,      PINK,       PINK,       YELLOW,     YELLOW,     BLACK, 
-        BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  GREEN,      BLUE,       BLUE,       BLUE,       BLUE },
+        BLACK,      BLACK,      BLACK,      BLACK,      BLACK,      BLACK,                  BLACK,      BLUE,       BLUE,       BLUE,       BLUE },
 
     [_MIDI] = {
         BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      BLACK,      BLACK,      WHITE,      BLACK,      
