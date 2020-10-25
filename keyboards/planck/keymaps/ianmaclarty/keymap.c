@@ -67,10 +67,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_CAPS] = LAYOUT_planck_grid(
-        TRNS,       RSFT(KC_Q), RSFT(KC_W), RSFT(KC_E), RSFT(KC_R), RSFT(KC_T), LSFT(KC_Y), LSFT(KC_U), LSFT(KC_I),     LSFT(KC_O),     LSFT(KC_P),     TRNS,
-        KC_TILD,    RSFT(KC_A), RSFT(KC_S), RSFT(KC_D), RSFT(KC_F), RSFT(KC_G), LSFT(KC_H), LSFT(KC_J),  LSFT(KC_K),    LSFT(KC_L),     KC_COLN,        KC_DQUO,
-        TRNS,       RSFT(KC_Z), RSFT(KC_X), RSFT(KC_C), RSFT(KC_V), RSFT(KC_B), LSFT(KC_N), LSFT(KC_M), KC_LABK,        KC_RABK,        KC_QUES,        TRNS,
-        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       TRNS,           TRNS,           TRNS,           TRNS
+        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,
+        KC_GRAVE,   TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,
+        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_SLASH,   TRNS,
+        TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       TRNS,       TRNS,       TRNS,       TRNS
     ),
 
     [_ADJUST] = LAYOUT_planck_grid(
@@ -369,6 +369,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             unhandled = false;
             break;
         case LT_CAPS:
+            if (record->event.pressed) {
+                register_code(KC_RSHIFT);
+            } else {
+                unregister_code(KC_RSHIFT);
+            }
             handle_layer_toggle(keycode, record, _CAPS);
             unhandled = false;
             break;
