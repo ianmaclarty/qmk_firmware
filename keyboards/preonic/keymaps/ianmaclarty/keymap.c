@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TRNS,       KC_F11,     KC_F12,     TRNS,       TRNS,       TRNS,       TRNS,       KC_LCBR,    KC_RCBR,    KC_UNDS,    KC_PLUS,    KC_BSLASH,
     TRNS,       KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_LBRACKET,KC_RBRACKET,KC_MINUS,   KC_EQUAL,   KC_PIPE,
     TRNS,       KC_LCBR,    KC_RCBR,    KC_LBRACKET,KC_RBRACKET,TRNS,       TRNS,       KC_LPRN,    KC_RPRN,    TRNS,       KC_PGUP,    TRNS,
-    TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_NO,      TRNS,       TRNS,       KC_HOME,    KC_PGDOWN,  KC_END
+    TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       TRNS,       KC_HOME,    KC_PGDOWN,  KC_END
 ),
 
 [_RESET] = LAYOUT_preonic_grid(
