@@ -11,11 +11,11 @@
     "url": "https://ianmaclarty.com",
     "processor": "RP2040",
     "split": {
-        "soft_serial_pin": "GP1"
+        "soft_serial_pin": "GP0"
     },
-    "diode_direction": "ROW2COL",
+    "diode_direction": "COL2ROW",
     "matrix_pins": {
-        "cols": ["GP3", "GP4", "GP5", "GP6", "GP7", "GP7"],
+        "cols": ["GP2", "GP3", "GP4", "GP5", "GP6", "GP7"],
         "rows": ["GP9", "GP10", "GP11", "GP12", "GP13"]
     },
     "layouts": {
@@ -77,19 +77,17 @@
                 {"matrix": [8, 1], "x": 15, "y": 3},
                 {"matrix": [8, 0], "x": 16, "y": 3},
 
-                {"matrix": [4, 3], "x": 5, "y": 4},
-                {"matrix": [4, 4], "x": 6, "y": 4},
-                {"matrix": [4, 1], "x": 7, "y": 4},
+                {"matrix": [4, 2], "x": 2, "y": 4},
+                {"matrix": [4, 3], "x": 3, "y": 4},
+                {"matrix": [4, 4], "x": 4, "y": 4},
+                {"matrix": [4, 5], "x": 5, "y": 4},
+                {"matrix": [4, 0], "x": 6, "y": 4},
 
-                {"matrix": [9, 1], "x": 9, "y": 4},
-                {"matrix": [9, 4], "x": 10, "y": 4},
-                {"matrix": [9, 3], "x": 11, "y": 4},
-
-                {"matrix": [4, 5], "x": 6, "y": 5},
-                {"matrix": [4, 2], "x": 7, "y": 5},
-
-                {"matrix": [9, 2], "x": 9, "y": 5},
-                {"matrix": [9, 5], "x": 10, "y": 5}
+                {"matrix": [9, 0], "x": 10, "y": 4},
+                {"matrix": [9, 5], "x": 11, "y": 4},
+                {"matrix": [9, 4], "x": 12, "y": 4},
+                {"matrix": [9, 3], "x": 13, "y": 4},
+                {"matrix": [9, 2], "x": 14, "y": 4}
             ]
         }
     }
